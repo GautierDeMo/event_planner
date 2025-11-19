@@ -28,12 +28,16 @@ else
     exit 1
 fi
 
+echo ""
 echo "🏗️  ÉTAPE 2 : Création des procédures..."
 
 if mysql -u $DB_USER -p < "$PROCEDURE_PATH"; then
     sleep 1
     echo ""
     echo "Création de la procédure create_event"
+    sleep 1
+    echo ""
+    echo "Création de la procédure register_person"
 else 
     echo "❌ Erreur lors de la création des procédures."
     exit 1
