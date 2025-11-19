@@ -66,4 +66,14 @@ WHERE event_id = p_event_id
   AND last_name = p_last_name;
 END //
 
+-- delete_event
+CREATE PROCEDURE delete_event (
+    IN p_event_id INT
+)
+
+BEGIN
+DELETE FROM event
+WHERE id = p_event_id;
+END //
+
 DELIMITER ;

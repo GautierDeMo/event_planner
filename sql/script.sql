@@ -19,6 +19,6 @@ CREATE TABLE IF NOT EXISTS register
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
     date_register DATETIME,
-    FOREIGN KEY(event_id) REFERENCES event(id)
+    FOREIGN KEY(event_id) REFERENCES event(id) ON DELETE CASCADE
   )
 ;
