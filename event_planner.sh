@@ -38,6 +38,9 @@ if mysql -u $DB_USER -p < "$PROCEDURE_PATH"; then
     sleep 1
     echo ""
     echo "Création de la procédure register_person"
+    sleep 1
+    echo ""
+    echo "Création de la procédure unregister_person"
 else 
     echo "❌ Erreur lors de la création des procédures."
     exit 1

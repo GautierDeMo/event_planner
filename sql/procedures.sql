@@ -51,4 +51,17 @@ BEGIN
     END IF;
 END //
 
+-- unregister_person
+
+CREATE PROCEDURE unregister_person (
+    IN first_name VARCHAR (50),
+    IN last_name VARCHAR (50)
+)
+
+BEGIN
+DELETE FROM register
+WHERE first_name = first_name
+  AND last_name = last_name;
+END //
+
 DELIMITER ;
