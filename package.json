@@ -1,6 +1,7 @@
 {
 	"name": "event_planner",
 	"version": "1.0.0",
+	"type": "module",
 	"description": "",
 	"main": "main.js",
 	"scripts": {
@@ -9,5 +10,8 @@
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"packageManager": "pnpm@10.13.1"
+	"packageManager": "pnpm@10.13.1",
+	"dependencies": {
+		"mongodb": "^7.0.0"
+	}
 }
