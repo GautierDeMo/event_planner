@@ -1,7 +1,3 @@
-import data from "./data/disisfine.json" with { type: "json" };
-import truegisterData from "./data/truegister.json" with { type: "json" };
-import liveticketData from "./data/liveticket.json" with { type: "json" };
-
 // #region Disisfine mapping
 function _mapDisisfineEvent(data) {
 	return {
