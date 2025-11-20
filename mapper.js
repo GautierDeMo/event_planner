@@ -1,21 +1,21 @@
-import disisfineData from "./data/disisfine.json" with { type: "json" };
+import data from "./data/disisfine.json" with { type: "json" };
 import truegisterData from "./data/truegister.json" with { type: "json" };
 import liveticketData from "./data/liveticket.json" with { type: "json" };
 
 // #region Disisfine mapping
-function _mapDisisfineEvent() {
+function _mapDisisfineEvent(data) {
 	return {
-		eventName: disisfineData.e_name,
-		dateStart: disisfineData.e_start,
-		dateEnd: disisfineData.e_finish,
-		maximumAttendees: disisfineData.e_attendees_max,
-		eventLocation: disisfineData.e_location,
+		eventName: data.e_name,
+		dateStart: data.e_start,
+		dateEnd: data.e_finish,
+		maximumAttendees: data.e_attendees_max,
+		eventLocation: data.e_location,
 	};
 }
 
-function _mapDisisfineAttendees(eventId) {
+function _mapDisisfineAttendees(eventId, data) {
 
-	return disisfineData.attendees.map(([firstName, lastName, dateRegister]) => ({
+	return data.attendees.map(([firstName, lastName, dateRegister]) => ({
 		eventId: eventId,
 		firstName: firstName,
 		lastName: lastName,
@@ -25,8 +25,8 @@ function _mapDisisfineAttendees(eventId) {
 // #endregion
 
 // #region Truegister mapping
-function _mapTruegisterEvent() {
-	const eventData = truegisterData.results[0].event;
+function _mapTruegisterEvent(data) {
+	const eventData = data.results[0].event;
 	return {
 		eventName: eventData.event_name,
 		dateStart: eventData.event_begin,
@@ -36,8 +36,8 @@ function _mapTruegisterEvent() {
 	};
 }
 
-function _mapTruegisterAttendees(eventId) {
-	const attendees = truegisterData.results[0].attendees;
+function _mapTruegisterAttendees(eventId, data) {
+	const attendees = data.results[0].attendees;
 
 	return attendees.map((attendee) => ({
 		eventId: eventId,
@@ -49,18 +49,18 @@ function _mapTruegisterAttendees(eventId) {
 // #endregion
 
 // #region Liveticket mapping
-function _mapLiveticketEvent() {
+function _mapLiveticketEvent(data) {
 	return {
-		eventName: liveticketData.event,
-		dateStart: liveticketData.start,
-		dateEnd: liveticketData.end,
-		maximumAttendees: liveticketData.max,
-		eventLocation: liveticketData.where,
+		eventName: data.event,
+		dateStart: data.start,
+		dateEnd: data.end,
+		maximumAttendees: data.max,
+		eventLocation: data.where,
 	};
 }
 
-function _mapLiveticketAttendees(eventId) {
-	return liveticketData.attendees.map((attendee) => ({
+function _mapLiveticketAttendees(eventId, data) {
+	return data.attendees.map((attendee) => ({
 		eventId: eventId,
 		firstName: attendee.fn,
 		lastName: attendee.ln,
@@ -70,27 +70,27 @@ function _mapLiveticketAttendees(eventId) {
 // #endregion
 
 // #region data mapping by import type (disisfine, truegister or liveticket)
-export function mapEvent(importType) {
+export function mapEvent(importType, data) {
 	switch (importType) {
 		case "disisfine":
-			return _mapDisisfineEvent();
+			return _mapDisisfineEvent(data);
 		case "truegister":
-			return _mapTruegisterEvent();
+			return _mapTruegisterEvent(data);
 		case "liveticket":
-			return _mapLiveticketEvent();
+			return _mapLiveticketEvent(data);
 		default:
 			throw new Error(`Type d'import inconnu: ${importType}`);
 	}
 }
 
-export function mapAttendees(importType, eventId) {
+export function mapAttendees(importType, eventId, data) {
 	switch (importType) {
 		case "disisfine":
-			return _mapDisisfineAttendees(eventId);
+			return _mapDisisfineAttendees(eventId, data);
 		case "truegister":
-			return _mapTruegisterAttendees(eventId);
+			return _mapTruegisterAttendees(eventId, data);
 		case "liveticket":
-			return _mapLiveticketAttendees(eventId);
+			return _mapLiveticketAttendees(eventId, data);
 		default:
 			throw new Error(`Type d'import inconnu: ${importType}`);
 	}
