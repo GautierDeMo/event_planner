@@ -1,4 +1,4 @@
-import { disisfine, liveticket, truegister } from "./test-import.js";
+import { disisfine, liveticket, truegister } from "./main.js";
 
 export async function addLiveticket(liveticketData) {
 	await liveticket.insertOne(liveticketData);
