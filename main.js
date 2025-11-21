@@ -161,8 +161,6 @@ switch (isExport) {
 		break;
 	case false:
 		break;
-	case "exit":
-		break;
 	default:
 		console.log("error during export");
 }
