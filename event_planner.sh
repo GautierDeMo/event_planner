@@ -131,6 +131,25 @@ fi
 
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "🛜  ÉTAPE 5 : Connexion en tant qu'admin (MDP '1234' demandé...)"
+echo "🥭  ÉTAPE 5 : Imports dans MongoDB..."
+
+if node ./main.js; then
+    # sleep 1
+    # echo ""
+    # echo "➕ Création de l'admin"
+    # sleep 1
+    # echo ""
+    # echo "➕ Ajout des droits 'SELECT' et 'CALL'"
+    # sleep 1
+    # echo ""
+    echo "✅ Imports réalisés avec succès."
+else
+    echo "❌ Erreur lors des imports dans MongoDB."
+    exit 1
+fi
+
+echo ""
+echo "-------------------------------------------------------------------------"
+echo "🛜  ÉTAPE 6 : Connexion en tant qu'admin (MDP '1234' demandé...)"
 echo ""
 mysql -u admin -p;
