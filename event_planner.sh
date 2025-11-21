@@ -3,12 +3,23 @@
 DB_USER="root"
 SCRIPT_PATH="sql/script.sql"
 PROCEDURE_PATH="sql/procedures.sql"
-SEED_PATH="sql/seed.sql"
+# SEED_PATH="sql/seed.sql"
 USERS_PATH="sql/users.sql"
 DB_NAME="event_planner"
 
 echo "-------------------------------------------------------------------------"
-echo "🏗️  ÉTAPE 1 : Construction de la base de données... (MDP 'root' demandé)"
+echo "🏗️  ÉTAPE 0 : Initialisation du repo via NPM"
+if npm install; then
+    echo ""
+    echo "✅ Modules ou packages installés"
+else
+    echo ""
+    echo "❌ erreur lors de l'installation des modules"
+fi
+
+echo ""
+echo "-------------------------------------------------------------------------"
+echo "🏗️  ÉTAPE 1 : Construction de la base de données... (MDP du root demandé)"
 
 if mysql -u $DB_USER -p < "$SCRIPT_PATH"; then
     sleep 1
@@ -33,7 +44,7 @@ fi
 
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "🏗️  ÉTAPE 2 : Création des procédures... (MDP 'root' demandé)"
+echo "🏗️  ÉTAPE 2 : Création des procédures... (MDP du root demandé)"
 
 if mysql -u $DB_USER -p < "$PROCEDURE_PATH"; then
     sleep 1
@@ -93,7 +104,7 @@ fi
 
 # echo ""
 # echo "-------------------------------------------------------------------------"
-# echo "💉  ÉTAPE 3 : Injection des données... (MDP 'root' demandé)"
+# echo "💉  ÉTAPE 3 : Injection des données... (MDP du root demandé)"
 
 # if mysql -u $DB_USER -p < "$SEED_PATH"; then
 #     sleep 1
@@ -112,7 +123,7 @@ fi
 
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "🎅🏼  ÉTAPE 4 : Création des utilisateurs... (MDP 'root' demandé)"
+echo "🎅🏼  ÉTAPE 3 : Création des utilisateurs... (MDP du root demandé)"
 
 if mysql -u $DB_USER -p < "$USERS_PATH"; then
     sleep 1
@@ -131,42 +142,12 @@ fi
 
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "🥭  ÉTAPE 5 : Imports dans MongoDB... (MDP 'root' demandé)"
+echo "🥭  ÉTAPE 4 : Imports dans MongoDB..."
 
-if node ./main.js; then
-    sleep 1
-    echo ""
-    echo "🏠🔥🐶☕️ Import vers MongoDB du format 'Disisfine'"
-    echo "Rapport au meme t'sais"
-    sleep 1
-    echo ""
-    echo "🧑🏼‍💻 Import vers MongoDB du format 'Truegister'"
-    sleep 1
-    echo ""
-    echo "🧑🏼‍💻 Import vers MongoDB du format 'Liveticket'"
-    sleep 1
-    echo ""
-    echo "✅ Imports vers MongoDB réalisés avec succès."
-    sleep 1
-    echo ""
-    echo "🏠🔥🐶☕️ Export vers MySQL du format 'Disisfine'"
-    echo "Rapport au meme t'sais"
-    sleep 1
-    echo ""
-    echo "🧑🏼‍💻 Export vers MySQL du format 'Truegister'"
-    sleep 1
-    echo ""
-    echo "🧑🏼‍💻 Export vers MySQL du format 'Liveticket'"
-    sleep 1
-    echo ""
-    echo "✅ Exports vers MySQL réalisés avec succès."
-else
-    echo "❌ Erreur lors des imports ou exports dans MongoDB ou MySQL."
-    exit 1
-fi
+node ./main.js
 
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "🛜  ÉTAPE 6 : Connexion en tant qu'admin (MDP '1234' demandé...)"
+echo "🛜  ÉTAPE 5 : Connexion en tant qu'utilisateur à la BDD MySql (MDP '1234' demandé...)"
 echo ""
-mysql -u admin -p;
+mysql -u user1 -p;
