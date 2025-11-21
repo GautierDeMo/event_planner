@@ -42,12 +42,22 @@ BEGIN
   SELECT COUNT(*) INTO count_person FROM register WHERE event_id = p_event_id;
   SELECT maximum_attendees INTO max_capacity FROM event WHERE id = p_event_id;
 
-  IF count_person < max_capacity THEN
-    INSERT INTO register (event_id, first_name, last_name, date_register)
-    VALUES (p_event_id, p_first_name, p_last_name, p_date_register);
+  IF count_person < max_capacity OR max_capacity IS NULL THEN
+    INSERT INTO register (
+      event_id,
+      first_name,
+      last_name,
+      date_register
+    )
+    VALUES (
+      p_event_id,
+      p_first_name,
+      p_last_name,
+      p_date_register
+    );
   ELSE SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT ='Error : max capacity reached';
-    END IF;
+    SET MESSAGE_TEXT ='Error : max capacity reached';
+  END IF;
 END //
 
 -- unregister_person

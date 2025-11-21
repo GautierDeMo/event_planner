@@ -17,13 +17,6 @@ async function addDisisfine() {
 
 export async function runImport() {
   await addLiveticket();
-  console.log('‍🧑🏼💻 Liveticket data imported !');
-  console.log('');
   await addTruegister();
-  console.log('🧑🏼💻 Truegister data imported !');
-  console.log('');
   await addDisisfine();
-  console.log('🏠🔥🐶☕️ Disisfine data imported !');
-  console.log("Rapport au meme t'sais");
-  console.log('');
 }

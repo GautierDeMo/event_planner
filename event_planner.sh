@@ -8,7 +8,7 @@ USERS_PATH="sql/users.sql"
 DB_NAME="event_planner"
 
 echo "-------------------------------------------------------------------------"
-echo "🏗️  ÉTAPE 1 : Construction de la base de données..."
+echo "🏗️  ÉTAPE 1 : Construction de la base de données... (MDP 'root' demandé)"
 
 if mysql -u $DB_USER -p < "$SCRIPT_PATH"; then
     sleep 1
@@ -33,7 +33,7 @@ fi
 
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "🏗️  ÉTAPE 2 : Création des procédures..."
+echo "🏗️  ÉTAPE 2 : Création des procédures... (MDP 'root' demandé)"
 
 if mysql -u $DB_USER -p < "$PROCEDURE_PATH"; then
     sleep 1
@@ -91,28 +91,28 @@ else
     exit 1
 fi
 
+# echo ""
+# echo "-------------------------------------------------------------------------"
+# echo "💉  ÉTAPE 3 : Injection des données... (MDP 'root' demandé)"
+
+# if mysql -u $DB_USER -p < "$SEED_PATH"; then
+#     sleep 1
+#     echo ""
+#     echo "📆 Injection des events"
+#     sleep 1
+#     echo ""
+#     echo "📝 Injection des inscriptions"
+#     sleep 1
+#     echo ""
+#     echo "✅ Données injectées avec succès."
+# else
+#     echo "❌ Erreur lors de l'injection des données."
+#     exit 1
+# fi
+
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "💉  ÉTAPE 3 : Injection des données..."
-
-if mysql -u $DB_USER -p < "$SEED_PATH"; then
-    sleep 1
-    echo ""
-    echo "📆 Injection des events"
-    sleep 1
-    echo ""
-    echo "📝 Injection des inscriptions"
-    sleep 1
-    echo ""
-    echo "✅ Données injectées avec succès."
-else
-    echo "❌ Erreur lors de l'injection des données."
-    exit 1
-fi
-
-echo ""
-echo "-------------------------------------------------------------------------"
-echo "🎅🏼  ÉTAPE 4 : Création des utilisateurs..."
+echo "🎅🏼  ÉTAPE 4 : Création des utilisateurs... (MDP 'root' demandé)"
 
 if mysql -u $DB_USER -p < "$USERS_PATH"; then
     sleep 1
@@ -131,20 +131,37 @@ fi
 
 echo ""
 echo "-------------------------------------------------------------------------"
-echo "🥭  ÉTAPE 5 : Imports dans MongoDB..."
+echo "🥭  ÉTAPE 5 : Imports dans MongoDB... (MDP 'root' demandé)"
 
 if node ./main.js; then
-    # sleep 1
-    # echo ""
-    # echo "➕ Création de l'admin"
-    # sleep 1
-    # echo ""
-    # echo "➕ Ajout des droits 'SELECT' et 'CALL'"
-    # sleep 1
-    # echo ""
-    echo "✅ Imports réalisés avec succès."
+    sleep 1
+    echo ""
+    echo "🏠🔥🐶☕️ Import vers MongoDB du format 'Disisfine'"
+    echo "Rapport au meme t'sais"
+    sleep 1
+    echo ""
+    echo "🧑🏼‍💻 Import vers MongoDB du format 'Truegister'"
+    sleep 1
+    echo ""
+    echo "🧑🏼‍💻 Import vers MongoDB du format 'Liveticket'"
+    sleep 1
+    echo ""
+    echo "✅ Imports vers MongoDB réalisés avec succès."
+    sleep 1
+    echo ""
+    echo "🏠🔥🐶☕️ Export vers MySQL du format 'Disisfine'"
+    echo "Rapport au meme t'sais"
+    sleep 1
+    echo ""
+    echo "🧑🏼‍💻 Export vers MySQL du format 'Truegister'"
+    sleep 1
+    echo ""
+    echo "🧑🏼‍💻 Export vers MySQL du format 'Liveticket'"
+    sleep 1
+    echo ""
+    echo "✅ Exports vers MySQL réalisés avec succès."
 else
-    echo "❌ Erreur lors des imports dans MongoDB."
+    echo "❌ Erreur lors des imports ou exports dans MongoDB ou MySQL."
     exit 1
 fi
 
