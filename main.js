@@ -60,7 +60,6 @@ async function fsToJson(filePath) {
 		console.log("ça marche!");
 		return JSON.parse(data);
 	} catch (err) {
-		console.log("lien vraiment incorrect");
 		return;
 	}
 }
@@ -114,8 +113,6 @@ while (isDoneImportingData === false) {
 			await addTruegister(parsedData);
 			console.log("🧑🏼‍💻 Import vers MongoDB du format 'Liveticket'");
 			break;
-		default:
-			console.log("error during import");
 	}
 	isDoneImportingData = await select({
 		message: "Voulez-vous importer d'autres fichiers?",
@@ -143,10 +140,6 @@ const isExport = await select({
 			name: "Non",
 			value: false,
 		},
-		{
-			name: "Exit",
-			value: "exit",
-		},
 	],
 });
 
@@ -161,8 +154,6 @@ switch (isExport) {
 		break;
 	case false:
 		break;
-	default:
-		console.log("error during export");
 }
 
 await mongodbClient.close();
