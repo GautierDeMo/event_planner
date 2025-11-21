@@ -19,8 +19,9 @@ async function allDisisfine() {
     console.log('--- DISISFINE ---');
     for (const disisfine of allDatas) {
         const mappedDisisfine = mapEvent('disisfine', disisfine);
+        // ajouter l'export dans mysql
         mappedDisisfine.attendees = mapAttendees('disisfine', disisfine._id, disisfine);
-        console.log(mappedDisisfine);
+        // console.log(mappedDisisfine);
     }
     console.log('');
 }
@@ -30,8 +31,9 @@ async function allTruegister() {
     console.log('--- TRUEGISTER ---');
     for (const truegister of allDatas) {
         const mappedTruegister = mapEvent('truegister', truegister);
+        // ajouter l'export dans mysql
         mappedTruegister.attendees = mapAttendees('truegister', truegister._id, truegister);
-        console.log(mappedTruegister);
+        // console.log(mappedTruegister);
     }
     console.log('');
 }
@@ -41,8 +43,9 @@ async function allLiveticket() {
     console.log('--- LIVETICKET ---');
     for (const liveticket of allDatas) {
         const mappedLiveticket = mapEvent('liveticket', liveticket);
+        // ajouter l'export dans mysql
         mappedLiveticket.attendees = mapAttendees('liveticket', liveticket._id, liveticket);
-        console.log(mappedLiveticket);
+        // console.log(mappedLiveticket);
     }
 }
 
