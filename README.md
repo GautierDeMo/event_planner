@@ -20,7 +20,7 @@ brew services start mongodb-community
 # Par défaut sur Mac, root n'a pas de mot de passe.
 # Si vous en mettez un, retenez-le pour le script !
 mysql_secure_installation
-````
+```
 
 ## Installation sur Linux (Ubuntu)
 
@@ -36,12 +36,13 @@ sudo systemctl enable mysql
 # 3. Configurer le mot de passe Root MySQL (CRITIQUE pour le script)
 # Par défaut, Ubuntu utilise auth_socket. Le script a besoin d'un mot de passe natif.
 sudo mysql
--- Une fois dans le prompt MySQL :
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'votre_mot_de_passe';
-FLUSH PRIVILEGES;
-EXIT;
 
-# 4. Installer MongoDB
+  # 3.1 Une fois dans le prompt MySQL :
+  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'votre_mot_de_passe';
+  FLUSH PRIVILEGES;
+  EXIT;
+
+# 4. Installer et lancer MongoDB
 # (Note : Pour une prod, utilisez les dépôts officiels Mongo, ici version simple des dépôts Ubuntu)
 sudo apt install -y mongodb
 sudo systemctl start mongodb
@@ -63,9 +64,10 @@ sudo service mysql start
 
 # 3. Configurer Root MySQL
 sudo mysql
--- Dans MySQL :
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'votre_mot_de_passe';
-EXIT;
+
+  # 3.1 Une fois dans le prompt MySQL :
+  ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'votre_mot_de_passe';
+  EXIT;
 
 # 4. Installer et lancer MongoDB
 # (Sur WSL, systemctl peut ne pas marcher selon la version, on utilise service)
