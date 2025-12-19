@@ -48,7 +48,7 @@ sudo systemctl start mongodb
 sudo systemctl enable mongodb
 ```
 
-## Installation sur WSL
+## Installation sur Windows
 
 ### Dans votre terminal WSL (Ubuntu)
 
@@ -81,7 +81,7 @@ Dans votre terminal, déplacez-vous dans le dossier du projet. Remplacez `<votre
   cd <votre_chemin/vers_le_dossier>/event_planner
 ```
 
-***Ayez bien NPM LTS (ou PNPM si vous voulez prouver) d'installé avant de lancer le script***
+***Ayez bien NPM LTS d'installé avant de lancer le script***
 
 ---
 
