@@ -9,7 +9,7 @@ DB_NAME="event_planner"
 
 echo "-------------------------------------------------------------------------"
 echo "🏗️  ÉTAPE 0 : Initialisation du repo via NPM"
-if npm install; then
+if npm ci; then
     echo ""
     echo "✅ Modules ou packages installés"
 else
@@ -128,7 +128,7 @@ echo "🎅🏼  ÉTAPE 3 : Création des utilisateurs... (MDP du root demandé)"
 if mysql -u $DB_USER -p < "$USERS_PATH"; then
     sleep 1
     echo ""
-    echo "➕ Création de l'admin"
+    echo "➕ Création de l'utilisateur 1"
     sleep 1
     echo ""
     echo "➕ Ajout des droits 'SELECT' et 'CALL'"

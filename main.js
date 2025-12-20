@@ -12,7 +12,7 @@ const databaseMongoDB = mongodbClient.db("event_planner");
 
 export const mysqlClient = await mysql.createConnection({
 	host: "127.0.0.1",
-	user: "admin",
+	user: "user1",
 	password: "1234",
 	database: "event_planner",
 });
